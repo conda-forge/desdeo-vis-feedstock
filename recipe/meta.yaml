@@ -1,8 +1,8 @@
 {% set name = "desdeo-vis" %}
-{% set version = "0.1.5" %}
+{% set version = "0.2.0" %}
 {% set file_ext = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "eeada7894941393ddf3fbfd81ac708855de0cb5a835f3e7e1f2ef16dce2ecaff" %}
+{% set hash_value = "4fe3db61ca84742f0384e3d4fd9755a50d1cec701e7a2fb1b91910406505e52c" %}
 
 package:
   name: '{{ name|lower }}'

@@ -1,31 +1,28 @@
 {% set name = "desdeo-vis" %}
 {% set version = "0.2.0" %}
-{% set file_ext = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "4fe3db61ca84742f0384e3d4fd9755a50d1cec701e7a2fb1b91910406505e52c" %}
 
 package:
   name: '{{ name|lower }}'
   version: '{{ version }}'
 
 source:
-  fn: '{{ name }}-{{ version }}.{{ file_ext }}'
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
-  '{{ hash_type }}': '{{ hash_value }}'
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  'sha256': '4fe3db61ca84742f0384e3d4fd9755a50d1cec701e7a2fb1b91910406505e52c'
 
 build:
   noarch: python
-  number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  number: 1
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
+  host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
     - ipywidgets >=7.0.0
     - widgetsnbextension
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - ipywidgets >=7.0.0
     - widgetsnbextension
     - desdeo >=0.1.3
@@ -34,6 +31,8 @@ requirements:
     - vega
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - desdeo_vis
     - desdeo_vis.nbextension
